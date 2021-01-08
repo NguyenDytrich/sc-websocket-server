@@ -1,4 +1,9 @@
 import Server from '@supercollider/server';
 
 const s = new Server();
-await s.connect();
+
+async function start() {
+  await s.connect();
+}
+
+start();
