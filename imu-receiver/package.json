@@ -12,6 +12,7 @@
     "server": "node lib/server.js"
   },
   "dependencies": {
+    "@supercollider/server-plus": "^1.0.1",
     "express": "^4.17.1",
     "quaternion": "^1.1.0",
     "socket.io": "^3.0.5",
@@ -23,6 +24,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-typescript": "^7.12.7",
     "@types/express": "^4.17.9",
+    "@types/rx": "^4.1.2",
     "@types/socket.io": "^2.1.12",
     "@types/ws": "^7.4.0",
     "@typescript-eslint/eslint-plugin": "^4.12.0",

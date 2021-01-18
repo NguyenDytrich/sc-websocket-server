@@ -1,4 +1,3 @@
-import AHRS from 'ahrs';
 import ServerPlus from '@supercollider/server-plus';
 
 import Express from 'express';
@@ -53,14 +52,6 @@ const wss = new WebSocket.Server({ port: 8000, clientTracking: true });
 wss.on('connection', async (ws) => {
   console.log('Established WS connection');
 
-  // Instantiate AHRS
-  const madgwick = new AHRS(
-    {
-      sampleInterval: 20,
-      beta: 0.1,
-    },
-  );
-
   let timestamp = Date.now();
   const updateInterval = 200; // in ms
 
@@ -69,21 +60,11 @@ wss.on('connection', async (ws) => {
 
     // Broadcast an event via Socket.IO
     try {
-      const json = JSON.parse(dat);
+      const json = JSON.parse(String(dat));
 
       const {
         gyroscope: gyro, acceleration: accel, magnetometer: mag, quaternion: quat,
       } = json;
-
-      /*
-      madgwick.update(
-        gyro.x, gyro.y, gyro.z,
-        accel.x, accel.y, accel.z,
-        mag.x, mag.y, mag.z,
-      );
-      const eulerA = madgwick.getEulerAngles();
-      const quaternion = Quaternion(madgwick.getQuaternion());
-       */
 
       const {
         w: qw, x: qx, y: qy, z: qz,
@@ -96,12 +77,6 @@ wss.on('connection', async (ws) => {
       // Filter gravity from the rotated velocity
       const aC = [ar[0], ar[1], ar[2] + gconst];
 
-      // Filter gravity
-      // const linearAccel = [ar[0], ar[1], ar[2] + 9.8];
-      // console.log(`Linear accel: ${JSON.stringify(linearAccel)}`);
-      // console.log(`Rotated gravity vector: ${g}`);
-
-      // console.log(`Calculated Euler angles: ${JSON.stringify(eulerA)}`);
       socketio.emit('orientation_update', { quaternion: quat });
 
       if (Date.now() - timestamp >= updateInterval) {
@@ -114,8 +89,6 @@ wss.on('connection', async (ws) => {
       }
     } catch (e) {
       console.error(e);
-      // console.error("Couldn't parse json from incoming data:");
-      // console.error(`\t${dat}`);
     }
 
     // Function that spawns a synth
