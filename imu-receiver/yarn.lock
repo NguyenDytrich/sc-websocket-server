@@ -3050,6 +3050,11 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
+quaternion@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/quaternion/-/quaternion-1.1.0.tgz#ca55f78bf3e79246f1d22b8a0ee10f992533ae30"
+  integrity sha512-mLTtnzuMtUzguemuvsxD+KPS4F05H1Bw/4cNsQQvzfvPEGvkmWLRoAKsHT0V9go4X4hOU3LCtuxqWXQi3JN+SA==
+
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
